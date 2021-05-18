@@ -1,0 +1,284 @@
+function Cover(Enemy)
+    for i,v in pairs(Enemy:GetChildren()) do 
+        if v:IsA("BasePart") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then 
+        local math1 = math.random(1,i)
+        local math2 = math.random(1,i)
+        local math3 = math.random(1,i)
+        local math4 = math.random(1,i)
+        if i == math1 or i == math2 or i == math3 or i == math4 then 
+        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(v.CFrame * CFrame.new(0,3,0))
+        wait(0.2)
+        end
+        end
+    end
+end
+
+
+
+function Sell(button)
+    for i,v in pairs(getconnections(button.MouseButton1Click)) do 
+    v:Fire()
+    end
+end
+
+
+local SellAmount
+
+local AreaTab = {}
+local Selected
+getgenv().Reb = false
+getgenv().Food = false
+getgenv().Area = false
+getgenv().Sell = false
+getgenv().BuyEgg = false
+
+function Farm()
+    spawn(function()
+    while getgenv().Food == true do 
+        wait()
+        for i,v in pairs(game:GetService("Workspace")["Client_Services"].Areas.Foods:GetChildren()) do 
+            if v.Name == Selected then 
+                Cover(v)
+                wait(1)
+                end
+            end
+        end
+    end)
+end
+function AreaBuy()
+    spawn(function()
+        while getgenv().Area == true do 
+            wait(20)
+            local Area = game:GetService("Workspace")["Client_Services"].Areas.Portals:GetChildren()
+            for i,v in pairs(Area) do
+                if v:IsA("MeshPart") then 
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Area:FireServer(v.Name)
+                if game:GetService("CoreGui").PurchasePromptApp.Enabled == true then 
+                    game:GetService("CoreGui").PurchasePromptApp.Enabled = false
+                    end
+                end
+            end
+        end
+    end)
+end
+
+function AutoSell()
+    spawn(function()
+        while getgenv().Sell == true and SellAmount > 0  do 
+            wait(1)
+            local PlrFood = game:GetService("Players").LocalPlayer.leaderstats.Food.Value
+            if tonumber(PlrFood) >= SellAmount then 
+            Sell(game:GetService("Players").LocalPlayer.PlayerGui.UI["Right_Buttons_Frame"].Sell.Button)
+            end
+        end
+    end)
+end
+local EggTab = {}
+local SelectingEgg
+function BuyEgg()
+    spawn(function()
+        while getgenv().BuyEgg == true do  
+        wait()
+        local EggFrame = game:GetService("Players").LocalPlayer.PlayerGui["Egg_Frames"]:GetChildren()
+            for i = 1,#EggFrame do 
+            local Eggs = EggFrame[i]
+                if Eggs.Name == SelectingEgg then
+                    if SelectingEgg == "EGG TIER 1" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(100.750031, 7.06401396, 156.653198, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 2" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(130.801331, 6.54534674, 250.733856, -1.1920929, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 3 " then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-222.434296, 12.7417469, 265.239685, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 4" then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-383.147217, 11.3723383, 181.077835, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 5" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-514.757324, 11.3723383, 187.708939, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 6" then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-824.246948, 13.461916, 213.982208, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 7" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-977.06604, 21.4965324, 201.190384, 5.91874123e-05, -5.34057617e-05, 1, 0.994753659, 0.102299809, -5.34057617e-05, -0.102299869, 0.994753659, 5.91874123e-05))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 8" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1120.83997, 10.6753321, 214.026062, 0.305378258, 4.61054806e-05, 0.952231169, -0.00010084582, 1, -1.60773579e-05, -0.952231169, -9.11188545e-05, 0.305378))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 9" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1217.00952, 12.8679953, 258.958435, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)
+                elseif SelectingEgg == "EGG TIER 10" then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1426.14941, 16.3652573, 213.01857, 8.10623169e-05, 8.10623169e-05, 1, 1, 8.10623169e-05, -8.10623169e-05, -8.10623169e-05, 1, -8.10623169e-05))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)  
+                elseif SelectingEgg == "EGG TIER 11" then
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1570.62268, 16.0710449, 214.93454, -5.48362732e-06, -0.627116442, 0.778925538, 1, -5.48362732e-06, 2.65240669e-06, 2.65240669e-06, 0.778925538, 0.627116442))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)   
+                elseif SelectingEgg == "EGG TIER 12" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1718.70068, 18.169651, 214.602173, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)   
+                elseif SelectingEgg == "EGG TIER 13" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-1884.38538, 12.8679943, 186.735718, -5.24520874e-06, -5.24520874e-06, 1, 1, 8.10623169e-05, 5.24520874e-06, -8.10623169e-05, 1, 5.24520874e-06))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs)   
+                elseif SelectingEgg == "EGG TIER 14" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-2109.64551, 22.3893776, 220.466675, 0, 0, 1, 1, 0, 0, 0, 1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs) 
+                elseif SelectingEgg == "EGG TIER 15" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-2394.47266, 12.8679943, 164.555038, 0, 0, -1, 1, 0, 0, 0, -1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs) 
+                elseif SelectingEgg == "EGG TIER 16" then 
+                game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(-2430.83105, 12.8679943, 165.171494, 0, 0, -1, 1, 0, 0, 0, -1, 0))
+                game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Buy_Pet:FireServer("E",Eggs) 
+                end
+                end
+           end
+        end
+    end)
+end
+
+
+
+    
+local AutoReb = (function()
+    local PlayerMoney = game:GetService("Players").LocalPlayer.leaderstats.Coins.Value
+    local Rebirth = game:GetService("Players").LocalPlayer.PlayerGui.UI["Center_UI_Frame"].Rebirths:GetChildren()
+    local RebirthCost
+    for i = 1,#Rebirth do 
+        local Cust = Rebirth[i]
+        if Cust.Name == "Custo" then
+            local Cost = Cust.Text:split("(")[2]:split(" ")[1]
+                if Cost:match("K") then
+                local RoverCost = Cost:split("K")
+                RebirthCost = tonumber(RoverCost[1] * 1000)
+                return RebirthCost
+                else
+                    if Cost:match("M") then 
+                local RoverCost1 = Cost:split("M")[1]
+                RebirthCost = tonumber(RoverCost1 * 1000000)
+                return RebirthCost
+                else
+                    if Cost:match("B") then
+                    local RoverCost2 = Cost:split("B")[1]
+                    RebirthCost = tonumber(RoverCost2 * 1000000000)
+                    return RebirthCost
+                    else
+                        if Cost:match("T") then 
+                            local RoverCost3 = Cost:split("T")[1]
+                            RebirthCost = tonumber(RoverCost3 * 1000000000000)
+                            return RebirthCost
+                            else
+                                if Cost:match("Q") or Cost:match("q") then 
+                        local RoverCost4 = Cost:split("Q") or Cost:split("q")
+                        RebirthCost = tonumber(RoverCost4 * 1000000000000000)
+                        return RebirthCost
+                    end
+                end
+            end
+        end
+    end
+end
+end
+end)()
+function UpReb()
+    spawn(function()
+        while getgenv().Reb == true do 
+            wait()
+local PlayerMoney = game:GetService("Players").LocalPlayer.leaderstats.Coins.Value
+if PlayerMoney >= AutoReb then 
+    game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Rebirth:FireServer()
+    end
+    end
+end)
+end
+
+
+local Areas = game:GetService("Workspace")["Client_Services"].Areas.Foods:GetChildren()
+local EggFold = game:GetService("Players").LocalPlayer.PlayerGui["Egg_Frames"]:GetChildren()
+for i = 1,#Areas do 
+    local AddArea = Areas[i]
+    table.insert(AreaTab,AddArea.Name)
+end
+
+for i = 1,#EggFold do 
+    local AddEgg = EggFold[i]
+    table.insert(EggTab,AddEgg.Name)
+end
+
+
+
+
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
+
+local w = library:CreateWindow("Food Magnet Simulator") -- Creates the window
+
+local b = w:CreateFolder("Farms") 
+b:Toggle("Auto Food",function(bool)
+    getgenv().Food = bool
+    if bool then 
+    Farm()
+    end
+end)
+b:Dropdown("Select Area",AreaTab,true,function(bool)
+    Selected = bool
+end)
+
+b:Toggle("Auto Sell",function(sell)
+    getgenv().Sell = sell
+    if sell then 
+    AutoSell()
+    
+    end
+end)
+
+b:Box("Max Sell Amount","number",function(text)
+    SellAmount = tonumber(text)
+end)
+local b2 = w:CreateFolder("AutoBuy/Get")
+b2:Toggle("Auto Buy Egg",function(stat)
+    getgenv().BuyEgg = stat
+    if stat then 
+    BuyEgg()
+    end
+end)
+
+b2:Dropdown("Select Egg",EggTab,true,function(Select)
+    SelectingEgg = Select
+end)
+
+b2:Toggle("Auto Buy Area",function(statu)
+    getgenv().Area = statu
+    if statu then 
+    AreaBuy()  
+    end
+end)
+b2:Toggle("Auto Rebirth",function(stat)
+    getgenv().Reb = stat
+    if stat then 
+    UpReb()
+    end
+end)
+b2:Slider("WalkSpeed",{
+    min = 10; 
+    max = 200; 
+    precise = true; 
+},function(value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = value
+end)
+
+b2:Slider("JumpPower",{
+    min = 10; 
+    max = 200; 
+    precise = true; 
+},function(value)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = value
+end)
+
+b2:Label("Made By:efeeee#8151",{
+    TextSize = 13; -- Self Explaining
+    TextColor = Color3.fromRGB(255,255,255); -- Self Explaining
+    BgColor = Color3.fromRGB(69,69,69); -- Self Explaining
+    
+}) 
+b2:DestroyGui()
