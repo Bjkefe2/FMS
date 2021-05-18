@@ -188,6 +188,10 @@ function UpReb()
 local PlayerMoney = game:GetService("Players").LocalPlayer.leaderstats.Coins.Value
 if PlayerMoney >= AutoReb then 
     game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Rebirth:FireServer()
+    game:GetService("Players").LocalPlayer.PlayerGui.UI["Error_Frame"].Visible = false
+    else
+        game:GetService("Players").LocalPlayer.PlayerGui.UI["Error_Frame"].Visible = false
+        game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Rebirth:FireServer()
     end
     end
 end)
