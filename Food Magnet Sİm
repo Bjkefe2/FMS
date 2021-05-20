@@ -6,12 +6,14 @@ function Cover(Enemy)
         local math3 = math.random(1,i)
         local math4 = math.random(1,i)
         if i == math1 or i == math2 or i == math3 or i == math4 then 
-        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(v.CFrame * CFrame.new(0,3,0))
+        game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(v.CFrame * CFrame.new(0,2,2))
         wait(0.2)
         end
         end
     end
 end
+
+
 
 
 
@@ -26,11 +28,13 @@ local SellAmount
 
 local AreaTab = {}
 local Selected
+getgenv().SuperReb = false
 getgenv().Reb = false
 getgenv().Food = false
 getgenv().Area = false
 getgenv().Sell = false
 getgenv().BuyEgg = false
+getgenv().SuperExc = false
 
 function Farm()
     spawn(function()
@@ -62,12 +66,23 @@ function AreaBuy()
     end)
 end
 
+function SuperExchange()
+    spawn(function()
+        while getgenv().SuperExc == true do 
+            wait()
+            game:GetService("Players").LocalPlayer.PlayerGui.UI["Error_Frame"].Visible = false
+            game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Super_Exchange:FireServer()
+        end
+    end)
+end
+
+
 function AutoSell()
     spawn(function()
         while getgenv().Sell == true and SellAmount > 0  do 
             wait(1)
             local PlrFood = game:GetService("Players").LocalPlayer.leaderstats.Food.Value
-            if tonumber(PlrFood) >= SellAmount then 
+            if tonumber(PlrFood) >= SellAmount then
             Sell(game:GetService("Players").LocalPlayer.PlayerGui.UI["Right_Buttons_Frame"].Sell.Button)
             end
         end
@@ -198,6 +213,16 @@ end)
 end
 
 
+function SuperReb()
+    spawn(function()
+       while getgenv().SuperReb == true do 
+        wait()
+        game:GetService("ReplicatedStorage").Game_Service.Remotes_Event.Super_Rebirth:FireServer()
+        game:GetService("Players").LocalPlayer.PlayerGui.UI["Error_Frame"].Visible = false
+        end
+    end)
+end
+
 local Areas = game:GetService("Workspace")["Client_Services"].Areas.Foods:GetChildren()
 local EggFold = game:GetService("Players").LocalPlayer.PlayerGui["Egg_Frames"]:GetChildren()
 for i = 1,#Areas do 
@@ -261,6 +286,18 @@ b2:Toggle("Auto Rebirth",function(stat)
     getgenv().Reb = stat
     if stat then 
     UpReb()
+    end
+end)
+b2:Toggle("Auto Super Rebirth",function(stat)
+    getgenv().SuperReb = stat
+    if stat then 
+    SuperReb()    
+    end
+end)
+b2:Toggle("Auto Super Exchange",function(stat)
+    getgenv().SuperExc = stat 
+    if stat then 
+    SuperExchange()    
     end
 end)
 b2:Slider("WalkSpeed",{
