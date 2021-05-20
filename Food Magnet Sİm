@@ -30,7 +30,7 @@ local AreaTab = {}
 local Selected
 getgenv().SuperReb = false
 getgenv().Reb = false
-getgenv().Food = false
+getgenv().Food = false;
 getgenv().Area = false
 getgenv().Sell = false
 getgenv().BuyEgg = false
